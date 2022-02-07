@@ -1,0 +1,14 @@
+
+* text=auto
+
+# GitHub
+.gitattributes  text
+.gitignore      text
+README.md       text
+
+# Source files
+*.cpp           text
+
+# Test files
+*.txt           text
+
