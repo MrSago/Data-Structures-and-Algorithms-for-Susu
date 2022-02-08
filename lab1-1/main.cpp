@@ -1,4 +1,5 @@
 
+#include <algorithm>
 #include <iostream>
 #include <numeric>
 #include <ranges>
@@ -9,25 +10,21 @@ constexpr int INVALID_INDEX = -1;
 int main() {
     int N;
     std::cin >> N;
-    std::vector<int> arr(N);
 
-    int ix, jx;
-    ix = jx = INVALID_INDEX;
-    for (auto i : std::views::iota(0, N)) {
-        std::cin >> arr[i];
-        if (arr[i] < 0) {
-            jx = i;
-            if (ix == INVALID_INDEX) {
-                ix = i;
-            }
-        }
+    std::vector<int> arr(N);
+    for (auto& i : arr) {
+        std::cin >> i;
     }
 
-    if (ix == INVALID_INDEX || jx == INVALID_INDEX) {
+    auto neg = [](int& v) { return v < 0; };
+    auto ix = find_if(arr.begin(), arr.end(), neg);
+    auto jx = find_if(arr.rbegin(), arr.rend(), neg);
+
+    if (ix == arr.end() || jx == arr.rend()) {
         std::cout << 0 << std::endl;
     }
 
-    auto v = std::views::counted(arr.begin() + ix + 1, jx - ix - 1) |
+    auto v = std::ranges::subrange(ix + 1, (jx + 1).base()) |
              std::views::filter([](auto& v) { return v > 0; });
     std::cout << std::accumulate(v.begin(), v.end(), 0) << std::endl;
 
