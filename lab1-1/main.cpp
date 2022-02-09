@@ -5,28 +5,33 @@
 #include <ranges>
 #include <vector>
 
-constexpr int INVALID_INDEX = -1;
+template <typename T>
+T SumFirstLastNeg(std::vector<T> v) {
+    auto neg = [](auto& x) { return x < 0; };
+    auto pos = [](auto& x) { return x > 0; };
+
+    auto first_it = find_if(v.begin(), v.end(), neg);
+    auto last_it = find_if(v.rbegin(), v.rend(), neg);
+
+    if (first_it == v.end() || last_it == v.rend() ||
+        first_it + 1 >= (last_it + 1).base()) {
+        return 0;
+    }
+
+    auto it = std::ranges::subrange(first_it + 1, (last_it + 1).base()) |
+              std::views::filter(pos);
+
+    return std::accumulate(it.begin(), it.end(), 0);
+}
 
 int main() {
     int N;
     std::cin >> N;
 
     std::vector<int> arr(N);
-    for (auto& i : arr) {
-        std::cin >> i;
-    }
+    std::ranges::for_each(arr, [](auto& v) { std::cin >> v; });
 
-    auto neg = [](int& v) { return v < 0; };
-    auto ix = find_if(arr.begin(), arr.end(), neg);
-    auto jx = find_if(arr.rbegin(), arr.rend(), neg);
-
-    if (ix == arr.end() || jx == arr.rend()) {
-        std::cout << 0 << std::endl;
-    }
-
-    auto v = std::ranges::subrange(ix + 1, (jx + 1).base()) |
-             std::views::filter([](auto& v) { return v > 0; });
-    std::cout << std::accumulate(v.begin(), v.end(), 0) << std::endl;
+    std::cout << SumFirstLastNeg(arr) << std::endl;
 
     return 0;
 }

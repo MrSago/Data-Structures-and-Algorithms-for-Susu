@@ -3,25 +3,29 @@
 #include <regex>
 #include <vector>
 
-int main() {
-	std::vector<int> arr;
+std::vector<int> GetNumsFromString(std::string& s) {
+    std::regex re("\\d+");
+    auto start = std::sregex_iterator(s.begin(), s.end(), re);
+    auto end = std::sregex_iterator();
 
-	std::string s;
-	getline(std::cin, s);
+    std::vector<int> v;
+    for (auto i = start; i != end; ++i) {
+        v.push_back(std::stoi((*i).str()));
+    }
 
-	std::regex re("\\d+");
-	auto start = std::sregex_iterator(s.begin(), s.end(), re);
-	auto end = std::sregex_iterator();
-
-	for (auto i = start; i != end; ++i){
-		arr.push_back(std::stoi((*i).str()));
-	}
-
-	for (auto& i : arr) {
-		std::cout << i << ' ';
-	}
-	std::cout << std::endl;
-
-	return 0;
+    return v;
 }
 
+int main() {
+    std::string s;
+    getline(std::cin, s);
+
+    std::vector<int> arr = GetNumsFromString(s);
+
+    for (auto& i : arr) {
+        std::cout << i << ' ';
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
