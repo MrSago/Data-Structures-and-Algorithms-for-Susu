@@ -1,35 +1,39 @@
 
 #include <iostream>
-
-struct Date;
+#include <random>
 
 struct FileInfo {
-	std::string dir;
-	std::string name;
-	std::string ext;
-	Date created;
+    std::string dir;
+    std::string name;
+    std::string ext;
+    int created;
 };
 
 struct FileList {
-	FileInfo info;
-	struct FileList* next;
-}
+    FileInfo info;
+    struct FileList* next;
+};
 
 class RandomString {
-	private const std::random_device rd;
-	private std::mt19937 gen(rd);
-	private std::uniform_int_distribution<char> uid('a', 'z');
+    private:
+        std::random_device rd;
+        std::mt19937 gen;
+        std::uniform_int_distribution<char> uid;
 
-	public RandomString() {}
-	public std::string GetString(int n) {
-		std::string s(n);
-		std::generate(s.begin(), s.end(),
-			[&uid, &gen](auto& c) { return uid(gen); }
-		);
-		return s;
-	}
+    public:
+        RandomString() : rd(), gen(rd()), uid('a', 'z') {}
+        std::string GetString(int n) {
+            std::string s;
+            s.resize(n);
+            std::generate(s.begin(), s.end(),
+                [](auto& c) { return uid(gen); }
+            );
+            return s;
+        }
+};
 
 int main() {
-	
-	return 0;
+    RandomString rs;
+    std::cout << rs.GetString(10) << '\n';
+    return 0;
 }
