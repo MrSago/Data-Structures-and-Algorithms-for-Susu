@@ -44,7 +44,7 @@ void RunTestFile() {
     const char test_fname[] = "test.txt";
     std::ifstream test(test_fname);
     if (test.fail()) {
-        std::cout << "Error opening file: " << test_fname << '\n';
+        std::cout << "\nError opening file: " << test_fname << '\n';
         return;
     }
 
