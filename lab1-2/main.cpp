@@ -1,30 +1,34 @@
 
 #include <iostream>
-#include <ranges>
-#include <regex>
-#include <vector>
 
-std::vector<int> GetNumsFromString(std::string& s) {
-    std::regex re("\\d+");
-    auto start = std::sregex_iterator(s.begin(), s.end(), re);
-    auto end = std::sregex_iterator();
-
-    std::vector<int> v;
-    std::ranges::for_each(start, end, [&v](auto match) {
-        v.push_back(std::stoi(match.str()));
-    });
-
-    return v;
-}
+#include "lab1-2/functions_menu.hpp"
+#include "tools/console_menu.hpp"
 
 int main() {
-    std::string s;
-    getline(std::cin, s);
+    std::cout << "lab1-2 by Gordeev Alexander KE-201\n";
 
-    std::vector<int> arr = GetNumsFromString(s);
+    ConsoleMenu menu(DictFun {
+        { "1", CallFunction },
+        { "2", RunTestFile },
+        { "3", RandomTest }
+    });
 
-    std::ranges::for_each(arr, [](auto& v) { std::cout << v << ' '; });
-    std::cout << std::endl;
+    for (;;) {
+        std::cout
+            << '\n'
+            << "1. Simple call function\n"
+            << "2. Run test from file\n"
+            << "3. Generate random test\n"
+            << "0. Exit program\n";
+
+        std::string input;
+        std::getline(std::cin, input);
+        if (input == "0") { break; }
+
+        if (!menu.Invoke(input)) {
+            std::cout << "Unknown parameter: " << input << '\n';
+        }
+    }
 
     return 0;
 }

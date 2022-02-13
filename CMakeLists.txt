@@ -20,3 +20,4 @@ function(setup_target TARGET)
 endfunction(setup_target TARGET)
 
 setup_target(lab1-1)
+setup_target(lab1-2)
