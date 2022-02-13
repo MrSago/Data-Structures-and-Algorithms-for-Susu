@@ -2,7 +2,6 @@
 #ifndef _SUM_FIRST_LAST_NEG_HPP_
 #define _SUM_FIRST_LAST_NEG_HPP_
 
-#include <algorithm>
 #include <numeric>
 #include <ranges>
 #include <vector>
