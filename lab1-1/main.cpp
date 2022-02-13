@@ -1,37 +1,34 @@
 
-#include <algorithm>
 #include <iostream>
-#include <numeric>
-#include <ranges>
-#include <vector>
 
-template <typename T>
-T SumFirstLastNeg(std::vector<T> v) {
-    auto neg = [](auto& x) { return x < 0; };
-    auto pos = [](auto& x) { return x > 0; };
-
-    auto first_it = find_if(v.begin(), v.end(), neg);
-    auto last_it = find_if(v.rbegin(), v.rend(), neg);
-
-    if (first_it == v.end() || last_it == v.rend() ||
-        first_it + 1 >= (last_it + 1).base()) {
-        return 0;
-    }
-
-    auto it = std::ranges::subrange(first_it + 1, (last_it + 1).base()) |
-              std::views::filter(pos);
-
-    return std::accumulate(it.begin(), it.end(), 0);
-}
+#include "lab1-1/functions_menu.hpp"
+#include "tools/console_menu.hpp"
 
 int main() {
-    int N;
-    std::cin >> N;
+    std::cout << "lab1-1 by Gordeev Alexander KE-201\n";
 
-    std::vector<int> arr(N);
-    std::ranges::for_each(arr, [](auto& v) { std::cin >> v; });
+    ConsoleMenu menu(DictFun {
+        { "1", CallFunction },
+        { "2", RunTestFile },
+        { "3", RandomTest }
+    });
 
-    std::cout << SumFirstLastNeg(arr) << std::endl;
+    for (;;) {
+        std::cout
+            << '\n'
+            << "1. Simple call function\n"
+            << "2. Run test from file\n"
+            << "3. Generate random test\n"
+            << "0. Exit program\n";
+
+        std::string input;
+        std::getline(std::cin, input);
+        if (input == "0") { break; }
+
+        if (!menu.Invoke(input)) {
+            std::cout << "Unknown parameter: " << input << '\n';
+        }
+    }
 
     return 0;
 }
