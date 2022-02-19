@@ -9,8 +9,6 @@
 struct MenuInfo {
     std::function<void(void)> function;
     std::string description;
-    MenuInfo(std::function<void(void)> _function, std::string _description)
-    : function(_function),  description(_description) {}
 };
 
 using DictFun = std::map<std::string, MenuInfo>;
