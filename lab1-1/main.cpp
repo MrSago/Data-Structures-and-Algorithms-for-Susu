@@ -8,18 +8,14 @@ int main() {
     std::cout << "lab1-1 by Gordeev Alexander KE-201\n";
 
     ConsoleMenu menu(DictFun {
-        { "1", CallFunction },
-        { "2", RunTestFile },
-        { "3", RandomTest }
+        { "1", { CallFunction, "Simple call function" } },
+        { "2", { RunTestFile, "Run test from file" } },
+        { "3", { RandomTest, "Generate random test" } }
     });
 
     for (;;) {
-        std::cout
-            << '\n'
-            << "1. Simple call function\n"
-            << "2. Run test from file\n"
-            << "3. Generate random test\n"
-            << "0. Exit program\n";
+        std::cout << menu.GetDescription()
+                  << "0. Exit program\n";
 
         std::string input;
         std::getline(std::cin, input);

@@ -6,15 +6,29 @@
 #include <map>
 #include <string>
 
-using DictFun = std::map<std::string, std::function<void(void)>>;
+struct MenuInfo {
+    std::function<void(void)> function;
+    std::string description;
+    MenuInfo(std::function<void(void)> _function, std::string _description)
+    : function(_function),  description(_description) {}
+};
+
+using DictFun = std::map<std::string, MenuInfo>;
 
 class ConsoleMenu {
     public:
-        ConsoleMenu(DictFun&& functions) : functions_(functions) {}
+        ConsoleMenu(DictFun&& dict)
+        : menu_(dict) {
+            for (auto& [key, value] : menu_) {
+                description_ += key + ". " + value.description + '\n';
+            }
+        }
         bool Invoke(std::string& key);
+        std::string& GetDescription();
 
     private:
-        DictFun functions_;
+        DictFun menu_;
+        std::string description_;
         ConsoleMenu();
 };
 
