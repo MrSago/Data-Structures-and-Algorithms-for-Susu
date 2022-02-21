@@ -29,7 +29,7 @@ void CallFunction() {
     std::vector<int> arr(N);
     size_t cnt_entered = 0;
     std::ranges::for_each(arr, [&ss, &cnt_entered](auto& x) {
-        if (ss >> x) ++cnt_entered;
+        if (ss >> x) { ++cnt_entered; }
     });
 
     if (cnt_entered < N) {
