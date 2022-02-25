@@ -1,6 +1,6 @@
 
-/.vs
-/.vscode
+.vs
+.vscode
 *.exe
 *.out
 *.swp

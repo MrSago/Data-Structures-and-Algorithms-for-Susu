@@ -1,46 +1,30 @@
 
 #include <iostream>
-#include <stack>
 
-std::stack<int> InputStack(int n) {
-    std::stack<int> st;
-    while (n--) {
-        int x;
-        std::cin >> x;
-        st.push(x);
-    }
-    return st;
-}
-
-void OutputStack(std::stack<int>& st) {
-    while (!st.empty()) {
-        std::cout << st.top() << ' ';
-        st.pop();
-    }
-    std::cout << std::endl;
-}
-
-std::pair<int, int> CalcSumProd(std::stack<int>& st) {
-    int sum = 0, prod = 1;
-    while (!st.empty()) {
-        int x = st.top();
-        st.pop();
-        sum += x;
-        prod *= x;
-    }
-    return std::make_pair(sum, prod);
-}
+#include "lab2-2/functions_menu.hpp"
+#include "tools/console_menu.hpp"
 
 int main() {
-    int N;
-    std::cin >> N;
+    std::cout << "lab2-2 by Gordeev Alexander KE-201\n";
 
-    std::stack st = InputStack(N);
-    std::pair<int, int> res = CalcSumProd(st);
+    ConsoleMenu menu(DictFun {
+        { "1", { CallFunction, "Simple call function" } },
+        { "2", { RunTestFile, "Run test from file" } },
+        { "3", { RandomTest, "Generate random test" } }
+    });
 
-    st.push(res.first);
-    st.push(res.second);
-    OutputStack(st);
+    for (;;) {
+        std::cout << menu.GetDescription()
+                  << "0. Exit program\n";
+
+        std::string input;
+        std::getline(std::cin, input);
+        if (input == "0") { break; }
+
+        if (!menu.Invoke(input)) {
+            std::cout << "Unknown parameter: " << input << '\n';
+        }
+    }
 
     return 0;
 }
