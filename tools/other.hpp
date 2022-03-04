@@ -16,7 +16,9 @@ T ReadNumber() {
 
 template<typename T>
 void PrintVector(std::vector<T>& vec) {
-    std::ranges::for_each(vec, [](auto& x) { std::cout << x << ' '; });
+    std::ranges::for_each(vec,
+        [](auto& x) { std::cout << x << ' '; }
+    );
 }
 
 #endif // _OTHER_HPP_

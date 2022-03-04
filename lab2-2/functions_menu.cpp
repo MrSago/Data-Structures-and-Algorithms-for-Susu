@@ -7,6 +7,8 @@
 #include <ranges>
 #include <vector>
 #include <stack>
+#include <sstream>
+#include <cmath>
 
 #include "lab2-2/stack_functions.hpp"
 #include "tools/other.hpp"
@@ -15,10 +17,12 @@ void CallFunction() {
     std::cout << "\nEnter N: ";
     size_t N = ReadNumber<size_t>();
 
-    std::stack<int> stack = InputStack(N);
-    auto res = CalcSumProdStack(stack);
+    auto stack = InputStack(N);
+    auto result = CalcSumProdStack(stack);
 
-    std::cout << "Result: ";
+    std::cout << "Result: " << '\n'
+              << "Sum = " << result.first << '\n'
+              << "Product = " << result.second << '\n';
     OutputStack(stack);
     std::cout << '\n';
 }
@@ -26,6 +30,7 @@ void CallFunction() {
 void RunTestFile() {
     const char test_fname[] = "test.txt";
     std::ifstream test(test_fname);
+
     if (test.fail()) {
         std::cout << "\nError opening file: " << test_fname << '\n';
         return;
@@ -33,50 +38,52 @@ void RunTestFile() {
 
     std::cout << "\nTest from file: " << test_fname << "\n\n";
     for (int i = 1; !test.eof(); ++i) {
-        std::cout << "Test #" << i << '\n';
-
+        size_t N;
         std::string input;
+        std::stringstream ss;
+
         std::getline(test, input);
-        std::cout << "String: " << input << '\n';
+        ss << input;
 
-        std::vector<int> result = GetNumsFromString<int>(input);
+        if (!(ss >> N)) { continue; }
+        ss.clear();
 
-        std::cout << "Result: ";
-        PrintVector(result);
-        std::cout << '\n';
-
-        std::cout << "Answer: ";
         std::getline(test, input);
-        std::cout << input << "\n\n";
+        ss << input;
+
+        std::stack<int> stack;
+        for (int x; N-- && ss >> x; ) {
+            stack.push(x);
+        }
+
+        std::cout << "Test #" << i << '\n'
+                  << "Stack: ";
+        OutputStack(stack);
+
+        auto result = CalcSumProdStack(stack);
+        std::cout << "Result: " << '\n'
+                  << "Sum = " << result.first << '\n'
+                  << "Product = " << result.second << "\n\n";
     }
 }
 
 void RandomTest() {
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<int> uid(1, 100);
+    std::uniform_int_distribution<int> uid(-100, 100);
 
-    std::string str;
-    str.resize(uid(gen));
-    std::ranges::generate(str, [&uid, &gen]() {
-        switch (uid(gen) % 3) {
-            case 0:
-                return 'a' + uid(gen) % ('z' - 'a');
-            case 1:
-                return '0' + uid(gen) % 10;
-            case 2:
-                return (int)' ';
-            default:
-                break;
-        }
-        return 0;
-    });
+    int N = std::abs(uid(gen));
+    std::stack<int> stack;
 
-    std::cout << "\nString: " << str << '\n';
+    while (N--) {
+        stack.push(uid(gen));
+    }
 
-    std::vector<int> arr = GetNumsFromString<int>(str);
+    std::cout << "Stack: ";
+    OutputStack(stack);
 
-    std::cout << "Result: ";
-    PrintVector(arr);
-    std::cout << '\n';
+    auto result = CalcSumProdStack(stack);
+    std::cout << "Result " << '\n'
+              << "Sum = " << result.first << '\n'
+              << "Product = " << result.second << "\n\n";
 }
