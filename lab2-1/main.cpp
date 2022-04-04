@@ -13,6 +13,7 @@ int main() {
     Library lib(InitListFromFile("test.txt"));
 
     auto search = [&lib](std::function<int(Book*, std::string)> eq) {
+        std::cout << "Enter value: ";
         std::string s;
         std::getline(std::cin, s);
         auto list = lib.Search(s, eq);
