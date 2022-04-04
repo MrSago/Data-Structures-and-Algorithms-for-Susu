@@ -1,14 +1,14 @@
 
 #include "lab2-2/functions_menu.hpp"
 
+#include <cmath>
 #include <fstream>
 #include <iostream>
 #include <random>
 #include <ranges>
-#include <vector>
-#include <stack>
 #include <sstream>
-#include <cmath>
+#include <stack>
+#include <vector>
 
 #include "lab2-2/stack_functions.hpp"
 #include "tools/other.hpp"
@@ -20,11 +20,11 @@ void CallFunction() {
     auto stack = InputStack(N);
     auto result = CalcSumProdStack(stack);
 
-    std::cout << "Result: " << '\n'
-              << "Sum = " << result.first << '\n'
-              << "Product = " << result.second << '\n';
+    std::cout << "Stack: ";
     OutputStack(stack);
-    std::cout << '\n';
+
+    std::cout << "Sum = " << result.first << '\n'
+              << "Product = " << result.second << "\n\n";
 }
 
 void RunTestFile() {
@@ -56,13 +56,13 @@ void RunTestFile() {
             stack.push(x);
         }
 
-        std::cout << "Test #" << i << '\n'
-                  << "Stack: ";
+        std::cout << "Test #" << i << '\n';
+
+        std::cout << "Stack: ";
         OutputStack(stack);
 
         auto result = CalcSumProdStack(stack);
-        std::cout << "Result: " << '\n'
-                  << "Sum = " << result.first << '\n'
+        std::cout << "Sum = " << result.first << '\n'
                   << "Product = " << result.second << "\n\n";
     }
 }
@@ -70,11 +70,12 @@ void RunTestFile() {
 void RandomTest() {
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<int> uid(-100, 100);
+    std::uniform_int_distribution<int> uid(-20, 20);
 
-    int N = std::abs(uid(gen));
+    std::cout << "Enter N: ";
+    size_t N = ReadNumber<size_t>();
+
     std::stack<int> stack;
-
     while (N--) {
         stack.push(uid(gen));
     }
@@ -83,7 +84,6 @@ void RandomTest() {
     OutputStack(stack);
 
     auto result = CalcSumProdStack(stack);
-    std::cout << "Result " << '\n'
-              << "Sum = " << result.first << '\n'
+    std::cout << "Sum = " << result.first << '\n'
               << "Product = " << result.second << "\n\n";
 }

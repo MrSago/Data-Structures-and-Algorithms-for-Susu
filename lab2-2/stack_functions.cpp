@@ -5,7 +5,7 @@
 #include <stack>
 #include <sstream>
 
-std::stack<int> InputStack(int n) {
+std::stack<int> InputStack(int N) {
     std::string input;
     getline(std::cin, input);
 
@@ -14,7 +14,7 @@ std::stack<int> InputStack(int n) {
 
     std::stack<int> st;
 
-    for (int x; n-- && ss >> x; ) {
+    for (int x; N-- && ss >> x; ) {
         st.push(x);
     }
 
@@ -35,14 +35,13 @@ void OutputStack(std::stack<int> st) {
     std::cout << std::endl;
 }
 
-std::pair<int, int> CalcSumProdStack(std::stack<int>& st) {
-    int sum = 0, prod = 1;
+std::pair<int64_t, int64_t> CalcSumProdStack(std::stack<int> st) {
+    int64_t sum = 0, prod = 1;
 
     while (!st.empty()) {
-        int x = st.top();
+        sum += st.top();
+        prod *= st.top();
         st.pop();
-        sum += x;
-        prod *= x;
     }
 
     return std::make_pair(sum, prod);
