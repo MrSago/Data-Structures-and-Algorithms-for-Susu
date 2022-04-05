@@ -76,12 +76,31 @@ Library::~Library() {
 
 void Library::Print() {
     std::cout << "\nPrint list:\n\n";
-    Node* tail = head_;
 
+    Node* tail = head_;
     while (tail) {
         Book* book = tail->info;
         book->Print();
         tail = tail->next;
+    }
+}
+
+void Library::PrintExpired() {
+    std::cout << "\nPrint expired list:\n\n";
+
+    std::time_t now = std::time(0);
+    Node* current = head_;
+    while (current) {
+        std::tm new_date = current->info->date;
+        new_date.tm_mday += current->info->c_days;
+        new_date.tm_year -= 1900;
+
+        std::time_t date_time = std::mktime(&new_date);
+        if (date_time < now) {
+            current->info->Print();
+        }
+
+        current = current->next;
     }
 }
 

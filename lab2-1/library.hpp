@@ -66,6 +66,8 @@ class Library {
 
     void Print();
 
+    void PrintExpired();
+
     void Sort(std::function<int(Book*, Book*)> cmp);
 
     std::vector<Book*> Search(std::string value,

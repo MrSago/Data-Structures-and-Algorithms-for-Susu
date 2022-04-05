@@ -28,7 +28,8 @@ int main() {
         {"2", {[&lib]() { lib.Sort(lib.CmpNumber); }, "Sort by number"}},
         {"3", {[&lib]() { lib.Sort(lib.CmpAuthor); }, "Sort by author"}},
         {"4", {[&lib, &search]() { search(lib.EqNumber); }, "Search by number"}},
-        {"5", {[&lib, &search]() { search(lib.EqAuthor); }, "Search by author"}}
+        {"5", {[&lib, &search]() { search(lib.EqAuthor); }, "Search by author"}},
+        {"6", {[&lib]() { lib.PrintExpired(); }, "Print expired"}}
     });
 
     for (;;) {
