@@ -45,16 +45,22 @@ class Library {
     ~Library();
 
     std::function<int(Book*, std::string)> EqNumber =
-        [](Book* b, std::string val) { return b->number == val; };
+    [](Book* b, std::string val) {
+        return b->number == val;
+    };
 
-    std::function<int(Book*, Book*)> CmpNumber = [](Book* b1, Book* b2) {
+    std::function<int(Book*, Book*)> CmpNumber =
+    [](Book* b1, Book* b2) {
         return b1->number < b2->number;
     };
 
     std::function<int(Book*, std::string)> EqAuthor =
-        [](Book* b, std::string val) { return b->author == val; };
+    [](Book* b, std::string val) {
+        return b->author == val;
+    };
 
-    std::function<int(Book*, Book*)> CmpAuthor = [](Book* b1, Book* b2) {
+    std::function<int(Book*, Book*)> CmpAuthor =
+    [](Book* b1, Book* b2) {
         return b1->author < b2->author;
     };
 
