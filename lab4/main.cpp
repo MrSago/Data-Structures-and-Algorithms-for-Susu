@@ -1,6 +1,5 @@
 
 #include <iostream>
-#include <map>
 
 #include "tools/console_menu.hpp"
 #include "lab4/tasks.hpp"
