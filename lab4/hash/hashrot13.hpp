@@ -3,8 +3,11 @@
 #define _HASHROT13_HPP_
 
 #include <cstddef>
+#include <string>
 
-size_t HashRot13(char* p_str);
-size_t HashRot13(char c);
+size_t HashRot13(std::string& str);
+
+template<typename T>
+size_t HashRot13(T input);
 
 #endif // _HASHROT13_HPP_

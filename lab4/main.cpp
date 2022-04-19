@@ -1,8 +1,8 @@
 
 #include <iostream>
 
-#include "tools/console_menu.hpp"
 #include "lab4/tasks.hpp"
+#include "tools/console_menu.hpp"
 
 int main() {
     std::cout << "lab4 by Gordeev Alexander KE-201\n";
