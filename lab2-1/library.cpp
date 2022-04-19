@@ -1,6 +1,9 @@
 
 #include "lab2-1/library.hpp"
 
+#include <ranges>
+#include <sstream>
+
 void Book::Print() {
     std::cout << "--------------------\n\n"
               << number << '\n'

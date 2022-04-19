@@ -6,8 +6,6 @@
 #include <fstream>
 #include <functional>
 #include <iostream>
-#include <ranges>
-#include <sstream>
 #include <vector>
 
 struct Book {
