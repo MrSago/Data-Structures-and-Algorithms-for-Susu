@@ -1,8 +1,9 @@
 
 #include "lab4/tasks.hpp"
 
-#include <iostream>
 #include <fstream>
+#include <iostream>
+#include <string>
 
 #include "lab4/hash/hash_table.hpp"
 #include "tools/other.hpp"

@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <string>
 
 #include "lab4/tasks.hpp"
 #include "tools/console_menu.hpp"

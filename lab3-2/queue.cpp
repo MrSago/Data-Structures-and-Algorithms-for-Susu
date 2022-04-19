@@ -2,6 +2,7 @@
 #include "lab3-2/queue.hpp"
 
 #include <iostream>
+#include <queue>
 #include <random>
 #include <stack>
 

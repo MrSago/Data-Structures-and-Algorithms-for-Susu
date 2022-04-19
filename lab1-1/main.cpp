@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <string>
 
 #include "lab1-1/functions_menu.hpp"
 #include "tools/console_menu.hpp"

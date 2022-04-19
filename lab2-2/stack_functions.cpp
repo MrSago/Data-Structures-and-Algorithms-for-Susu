@@ -2,8 +2,9 @@
 #include "lab2-2/stack_functions.hpp"
 
 #include <iostream>
-#include <stack>
 #include <sstream>
+#include <stack>
+#include <string>
 
 std::stack<int> InputStack(int N) {
     std::string input;

@@ -7,6 +7,7 @@
 #include <random>
 #include <ranges>
 #include <sstream>
+#include <string>
 #include <vector>
 
 #include "lab1-1/sum_first_last_neg.hpp"

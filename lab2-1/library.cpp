@@ -1,8 +1,14 @@
 
 #include "lab2-1/library.hpp"
 
+#include <ctime>
+#include <fstream>
+#include <functional>
+#include <iostream>
 #include <ranges>
 #include <sstream>
+#include <string>
+#include <vector>
 
 void Book::Print() {
     std::cout << "--------------------\n\n"

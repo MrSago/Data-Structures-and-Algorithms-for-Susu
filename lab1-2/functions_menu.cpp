@@ -5,6 +5,7 @@
 #include <iostream>
 #include <random>
 #include <ranges>
+#include <string>
 #include <vector>
 
 #include "lab1-2/get_nums_from_string.hpp"

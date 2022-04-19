@@ -1,6 +1,7 @@
 
 #include "lab4/hash/hash_table.hpp"
 
+#include <cstddef>
 #include <cstring>
 #include <string>
 

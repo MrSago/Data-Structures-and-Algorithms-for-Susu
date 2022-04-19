@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <iostream>
 #include <ranges>
+#include <string>
 #include <vector>
 
 template<typename T>

@@ -3,9 +3,10 @@
 #include <functional>
 #include <iostream>
 #include <ranges>
+#include <string>
 
-#include "tools/console_menu.hpp"
 #include "lab2-1/library.hpp"
+#include "tools/console_menu.hpp"
 
 int main() {
     std::cout << "lab2-1 by Gordeev Alexander KE-201\n";
