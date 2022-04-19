@@ -45,5 +45,8 @@ std::pair<int64_t, int64_t> CalcSumProdStack(std::stack<int> st) {
         st.pop();
     }
 
+    st.push(sum);
+    st.push(prod);
+
     return std::make_pair(sum, prod);
 }
