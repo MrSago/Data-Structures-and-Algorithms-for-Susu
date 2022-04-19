@@ -5,6 +5,11 @@ project(Data-Structures-and-Algorithms)
 set(CMAKE_CXX_STANDARD 20)
 
 function(setup_target TARGET)
+    if(MSVC)
+        add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+        set(CMAKE_CXX_STANDARD 23)
+    endif()
+
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_CURRENT_SOURCE_DIR}/${TARGET})
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_CURRENT_SOURCE_DIR}/${TARGET})
 
