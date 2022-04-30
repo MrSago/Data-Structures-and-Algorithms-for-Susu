@@ -65,12 +65,12 @@ void SecondTask() {
 
     std::cout << "\nEnter word for search: ";
     std::getline(std::cin, str);
-    std::cout
-        << '\"' << str << "\" "
-        << (table.Contains(str)
-        ? "contains"
-        : "not contains")
-        << " in hash table\n";
+    if (table.Contains(str)) {
+        std::cout << '\"' << str << "\" contains in hash table\n"
+                  << "Count words in file: " << table[str] << '\n';
+    } else {
+        std::cout << "Word not contains\n";
+    }
 
     std::cout << "\nEnter symbol for delete: ";
     std::getline(std::cin, str);
@@ -87,6 +87,7 @@ void SecondTask() {
         std::cout << '['<< key << " : "
                         << value << "]\n";
     }
+    std::cout << '\n';
 }
 
 void ThirdTask() {
@@ -105,11 +106,18 @@ void ThirdTask() {
         ++table[number];
     }
 
+    std::cout << "Hash Table:\n";
+    for (auto& [key, value] : table) {
+        if (!key || !value) { continue; }
+        std::cout << '['<< key << " : "
+                        << value << "]\n";
+    }
+
     std::cout << "Enter number for search: ";
     int search = ReadNumber<int>();
 
     if (table.Contains(search)) {
-        std::cout << "Found number\n"
+        std::cout << '\"' << search << "\" found in hash table\n"
                   << "Count in file: " << table[search] << '\n';
     } else {
         std::cout << "Not found\n";
