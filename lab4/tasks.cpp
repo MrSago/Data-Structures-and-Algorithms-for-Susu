@@ -7,6 +7,7 @@
 
 #include "lab4/hash/hash_table.hpp"
 #include "tools/other.hpp"
+#include "lab4/hash/hashrot13.hpp"
 
 void FirstTask() {
     const int ALPH_LEN = 26;
@@ -24,6 +25,7 @@ void FirstTask() {
     for (auto& [key, value] : table) {
         if (!key || !value) { continue; }
         std::cout << '['<< key << " : "
+                        << HashRot13(key) << " : "
                         << value << "]\n";
     }
 
@@ -60,6 +62,7 @@ void SecondTask() {
     for (auto& [key, value] : table) {
         if (key.empty() || !value) { continue; }
         std::cout << '['<< key << " : "
+                        << HashRot13(key) << " : "
                         << value << "]\n";
     }
 
@@ -85,6 +88,7 @@ void SecondTask() {
     for (auto& [key, value] : table) {
         if (key.empty() || !value) { continue; }
         std::cout << '['<< key << " : "
+                        << HashRot13(key) << " : "
                         << value << "]\n";
     }
     std::cout << '\n';
@@ -110,6 +114,7 @@ void ThirdTask() {
     for (auto& [key, value] : table) {
         if (!key || !value) { continue; }
         std::cout << '['<< key << " : "
+                        << HashRot13(key) << " : "
                         << value << "]\n";
     }
 

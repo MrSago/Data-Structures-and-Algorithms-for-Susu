@@ -3,6 +3,7 @@
 
 #include <cstddef>
 #include <cstring>
+#include <concepts>
 #include <string>
 
 #include "lab4/hash/hashrot13.hpp"
@@ -42,12 +43,27 @@ bool HashTable<_TKey, _TVal>::Contains(_TKey key) {
     return used_[index];
 }
 
+template<class T>
+concept Clearable =
+requires (T& container) { container.clear(); };
+template<Clearable T>
+void ClearValue(T& c) {
+    c.clear();
+}
+
+template<typename T>
+concept Integral = std::is_integral<T>::value;
+template<Integral T>
+void ClearValue(T& t) {
+    t = static_cast<T>(0);
+}
+
 template<typename _TKey, typename _TVal>
 bool HashTable<_TKey, _TVal>::Erase(_TKey key) {
     size_t index = HashRot13(key) % size_;
     if (!used_[index]) { return false; }
-    used_[index] = false;
-    memset(&table_[index], 0, sizeof(HashTable<_TKey, _TVal>));
+    ClearValue(table_[index].key);
+    ClearValue(table_[index].value);
     return true;
 }
 
