@@ -1,6 +1,6 @@
 
 #include <iostream>
-include <vector>
+#include <vector>
 
 #include "lab5/sort.hpp"
 #include "lab5/test_sort.hpp"

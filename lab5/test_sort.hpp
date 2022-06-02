@@ -50,7 +50,7 @@ void StartTestSort(const char sort_name[],
     __run_test_sort(IncreasingVector, sort_fun, arr_sizes);
 
     std::cout << "Random array:\n";
-    __run_test_sort(RandomVector, sort_fun, arr_sizes);
+    __run_test_sort(RandomVectorReal, sort_fun, arr_sizes);
 
     std::cout << "Decreasing array:\n";
     __run_test_sort(DecreasingVector, sort_fun, arr_sizes);
